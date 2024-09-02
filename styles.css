@@ -34,23 +34,43 @@ body {
     background-size: 50px 50px;
 
     overflow-x: hidden;
-    padding: 4rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
 
 header {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
 }
 
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     row-gap: 0.5rem;
     column-gap: 1.5rem;
+}
+
+header img {
+    height: 240px;
+    max-width: 1280px;
+}
+
+header section {
+    z-index: 10;
+    position: absolute;
+    padding: 32px;
+}
+
+#search_bar {
+    background-color: #364153;
+    width: 480px;
+    padding: 16px;
+    border-radius: 12px;
 }
 
 /* @media screen and (min-width: 1024px) {
