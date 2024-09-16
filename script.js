@@ -20,13 +20,9 @@ searchInput.addEventListener('keydown', function submitSearch(event) {
 })
 
 async function loadProfile(searchTerm) {
-  if (useJSON === true) {
-    return github
-  } else {
-    const URL = `https://api.github.com/users/${searchTerm}`
-    const res = await fetch(`${URL}`)
-    if (res.ok === true) return await res.json()
-  }
+  const URL = `https://api.github.com/users/${searchTerm}`
+  const res = await fetch(`${URL}`)
+  if (res.ok === true) return await res.json()
 }
 
 function displaySearch(profile) {
@@ -154,6 +150,12 @@ function displayGrid(repos) {
   }
 }
 
+const dictionary = {
+  0: 'followers',
+  1: 'following',
+  2: 'location'
+}
+
 function calculateTimeDifference(fromDate, toDate) {
   const differenceInMs = toDate - fromDate
   const seconds = Math.floor(differenceInMs / 1000)
@@ -168,48 +170,6 @@ function calculateTimeDifference(fromDate, toDate) {
   if (months < 12) return `${months} months`
   const years = Math.floor(months / 12)
   return `${years} years`
-}
-
-const dictionary = {
-  0: 'followers',
-  1: 'following',
-  2: 'location'
-}
-
-const useJSON = false
-const github = {
-  "login": "github",
-  "id": 9919,
-  "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
-  "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
-  "gravatar_id": "",
-  "url": "https://api.github.com/users/github",
-  "html_url": "https://github.com/github",
-  "followers_url": "https://api.github.com/users/github/followers",
-  "following_url": "https://api.github.com/users/github/following{/other_user}",
-  "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
-  "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
-  "subscriptions_url": "https://api.github.com/users/github/subscriptions",
-  "organizations_url": "https://api.github.com/users/github/orgs",
-  "repos_url": "https://api.github.com/users/github/repos",
-  "events_url": "https://api.github.com/users/github/events{/privacy}",
-  "received_events_url": "https://api.github.com/users/github/received_events",
-  "type": "Organization",
-  "site_admin": false,
-  "name": "GitHub",
-  "company": null,
-  "blog": "https://github.com/about",
-  "location": "San Francisco, CA",
-  "email": null,
-  "hireable": null,
-  "bio": "How people build software.",
-  "twitter_username": "github",
-  "public_repos": 35,
-  "public_gists": 0,
-  "followers": 12556,
-  "following": 0,
-  "created_at": "2008-05-11T04:37:31Z",
-  "updated_at": "2023-09-08T09:34:33Z"
 }
 
 loadProfile('github').then(data => {
